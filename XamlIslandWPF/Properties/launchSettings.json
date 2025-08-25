@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "XamlIslandWPF": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
