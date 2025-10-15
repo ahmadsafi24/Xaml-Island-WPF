@@ -30,8 +30,6 @@
         </Style>
     </Window.Style>
     <Grid Background="Transparent">
-        <Border
-            x:Name="IslandContentBorder"
-            d:Background="DimGray"/>
+        <Border x:Name="IslandContentBorder" d:Background="DimGray" />
     </Grid>
 </Window>

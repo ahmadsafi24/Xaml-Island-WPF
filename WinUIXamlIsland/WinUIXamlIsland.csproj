@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+
+		<!-- Island-support: WindowsAppSDK supports only these platforms:-->
+		<Platform>x64</Platform>
+		<Platforms>x64</Platforms>
+		<PlatformTarget>x64</PlatformTarget>
+		<RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+		<UseWinUI>true</UseWinUI>
+		<EnableMsixTooling>true</EnableMsixTooling>
+
+		<!-- Island-support: Setting WindowsPackageType to "None" sets up machinery to 
+			 automatically load the WindowsAppSDK framework package when the program runs.  
+			 https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/use-windows-app-sdk-run-time -->
+		<WindowsPackageType>None</WindowsPackageType>
+
+		<!-- Island-support: This is a bit of a hack to prevent Microsoft.WinFX.targets from being imported.
+			 When this targets file gets imported, it tries to build our Xaml files for WPF, which won't work.-->
+		<ImportFrameworkWinFXTargets>true</ImportFrameworkWinFXTargets>
+
+		<!--<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>-->
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="1.8.250906003" />
+		<PackageReference Include="System.Drawing.Common" Version="10.0.0-rc.2.25502.107" />
+	</ItemGroup>
+	<!--<PropertyGroup Label="Globals">
+		<WebView2EnableCsWinRTProjection>False</WebView2EnableCsWinRTProjection>
+	</PropertyGroup>-->
+</Project>

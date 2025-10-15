@@ -6,9 +6,9 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 
-namespace XamlIslandWPF
+namespace WinUIXamlIsland
 {
-    internal partial class XamlApp : Microsoft.UI.Xaml.Application, IXamlMetadataProvider
+    public partial class XamlApp : Microsoft.UI.Xaml.Application, IXamlMetadataProvider
     {
         public readonly DispatcherQueueController controller;
         public void Shutdown()

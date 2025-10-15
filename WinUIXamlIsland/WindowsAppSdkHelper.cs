@@ -2,9 +2,9 @@
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
-namespace XamlIslandWPF;
+namespace WinUIXamlIsland;
 
-internal static class WindowsAppSdkHelper
+public static class WindowsAppSdkHelper
 {
     /// <summary>
     /// Call this once your WPF app starts using the WindowsAppSDK UI stack (WinUI 3, etc.).

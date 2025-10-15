@@ -7,7 +7,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 
 #nullable disable
-namespace XamlIslandWPF
+namespace WinUIXamlIsland
 {
     public partial class WinUIControlHost : HwndHost
     {

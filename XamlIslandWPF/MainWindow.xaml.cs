@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Interop;
 using WinUIXaml;
+using WinUIXamlIsland;
 
 namespace XamlIslandWPF
 {
@@ -22,10 +23,10 @@ namespace XamlIslandWPF
             var hwnd = windowInteropHelper.Handle;
 
             AppWindow appWindow = AppWindow.GetFromWindowId(Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd));
-            appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+            //appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
             appWindow.TitleBar.PreferredTheme = TitleBarTheme.UseDefaultAppMode;
-            appWindow.TitleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
-            appWindow.TitleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
+            //appWindow.TitleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
+            //appWindow.TitleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
 
             IslandContentBorder.Child = winUIControlHostContent;
 
