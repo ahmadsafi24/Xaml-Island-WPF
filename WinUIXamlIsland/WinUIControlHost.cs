@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
-using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
@@ -35,28 +34,19 @@ namespace WinUIXamlIsland
 
         protected override void OnInitialized(EventArgs e)
         {
-            InitIslandSampleCode();
+            _xamlSource.Content = _frame;
             base.OnInitialized(e);
+
         }
 
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
             var id = new Microsoft.UI.WindowId((ulong)hwndParent.Handle);
 
-            /*var windowId = id;*///XamlRoot.ContentIsland.Environment.AppWindowId;
-            //var hwnd = Microsoft.UI.Win32Interop.GetWindowFromWindowId(windowId);
-
-            //NoneClientAreaHelper noneClientAreaHelper = new(hwndParent.Handle);
-            //noneClientAreaHelper.ExtendFrameIntoClientArea();
-            //noneClientAreaHelper.ToggleImmersiveDarkMode(true);
-            //noneClientAreaHelper.SetBackdropType(DwmApi.BackdropType.Mica);
-
-            //AppWindow appWindow = AppWindow.GetFromWindowId(id);
-            //appWindow.TitleBar.PreferredTheme = TitleBarTheme.UseDefaultAppMode;
             _xamlSource.Initialize(id);
 
-            //to hide white flicker on resize
-            //_xamlSource.SiteBridge.Hide();
+            // This is the actual child HWND created for the island
+            //IntPtr childHwnd = _xamlSource.SiteBridge.SiteWindowHandle;
 
             _xamlSource.SystemBackdrop = new MicaBackdrop() { Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.Base };
             return new HandleRef(null, (nint)_xamlSource.SiteBridge.WindowId.Value);
@@ -73,10 +63,6 @@ namespace WinUIXamlIsland
         }
 
         private readonly Microsoft.UI.Xaml.Controls.Frame _frame = new();
-        private void InitIslandSampleCode()
-        {
-            _xamlSource.Content = _frame;
-        }
 
         protected override void DestroyWindowCore(HandleRef hwnd)
         {

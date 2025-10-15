@@ -14,7 +14,7 @@
 		<None Remove="BlankPage1.xaml" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251003001" />
+		<PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="1.8.250906003" />
 	</ItemGroup>
 	<ItemGroup>
 		<Page Update="BlankPage1.xaml">

@@ -15,8 +15,8 @@
         </Grid.RowDefinitions>
         <Grid
             Grid.Row="1"
-            Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
-            CornerRadius="5">
+            Background="{ThemeResource LayerFillColorDefaultBrush}"
+            CornerRadius="8">
             <Button
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"

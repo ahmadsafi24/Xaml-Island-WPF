@@ -5,15 +5,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:XamlIslandWPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wc="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
     Title="MainWindow"
     Width="800"
     Height="450"
+    Background="{x:Null}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
+    <!--<WindowChrome.WindowChrome>
+        <wc:WindowChrome
+            CaptionHeight="44"
+            CornerRadius="8"
+            GlassFrameThickness="-1"
+            NonClientFrameEdges="Bottom"
+            ResizeBorderThickness="8"
+            UseAeroCaptionButtons="True" />
+    </WindowChrome.WindowChrome>-->
     <Window.Style>
         <Style TargetType="Window">
             <Style.Setters>
-                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Margin" Value="0,0,-4,0" />
+                <Setter Property="wc:WindowChrome.WindowChrome">
+                    <Setter.Value>
+                        <wc:WindowChrome
+                            CaptionHeight="32"
+                            GlassFrameThickness="-1"
+                            NonClientFrameEdges="Right"
+                            ResizeBorderThickness="7"
+                            UseAeroCaptionButtons="True" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" Value="{x:Null}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Window">
@@ -29,7 +51,10 @@
             </Style.Setters>
         </Style>
     </Window.Style>
-    <Grid Background="Transparent">
-        <Border x:Name="IslandContentBorder" d:Background="DimGray" />
+    <Grid Margin="0,32,4,0" Background="Transparent">
+        <Border
+            x:Name="IslandContentBorder"
+            Margin="7"
+            d:Background="DimGray" />
     </Grid>
 </Window>

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Interop;
 using WinUIXaml;
 using WinUIXamlIsland;
+using XamlIslandWPF.Helpers;
 
 namespace XamlIslandWPF
 {
@@ -12,38 +13,33 @@ namespace XamlIslandWPF
 
         public MainWindow()
         {
+            this.SourceInitialized += MainWindow_SourceInitialized;
             InitializeComponent();
-            Loaded += MainWindow_Loaded;
+            ContentRendered += MainWindow_ContentRendered;
 
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void MainWindow_ContentRendered(object? sender, System.EventArgs e)
+        {
+            await Dispatcher.BeginInvoke(new System.Action(() =>
+            {
+                IslandContentBorder.Child = winUIControlHostContent;
+
+                winUIControlHostContent.Content = new BlankPage1();
+            }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+
+        }
+
+        private void MainWindow_SourceInitialized(object? sender, System.EventArgs e)
         {
             WindowInteropHelper windowInteropHelper = new(this);
             var hwnd = windowInteropHelper.Handle;
 
             AppWindow appWindow = AppWindow.GetFromWindowId(Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd));
-            //appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
             appWindow.TitleBar.PreferredTheme = TitleBarTheme.UseDefaultAppMode;
-            //appWindow.TitleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
-            //appWindow.TitleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
 
-            IslandContentBorder.Child = winUIControlHostContent;
-
-            winUIControlHostContent.Content = new BlankPage1();
-
-
+            NoneClientAreaHelper noneClientAreaHelper = new(hwnd);
+            noneClientAreaHelper.SetBackdropType(DwmApi.BackdropType.Mica);
         }
-
-        //protected override void OnRender(DrawingContext drawingContext)
-        //{
-        //    // Use the control's current render size
-        //    Rect rect = new Rect(0, 0, RenderSize.Width, RenderSize.Height);
-
-        //    // Fill 
-        //    drawingContext.DrawRectangle(Brushes.LightBlue, null, rect);
-        //    base.OnRender(drawingContext);
-
-        //}
     }
 }
