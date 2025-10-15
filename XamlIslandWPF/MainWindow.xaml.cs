@@ -1,45 +1,48 @@
-﻿using Microsoft.UI.Dispatching;
-using System;
+﻿using Microsoft.UI.Windowing;
 using System.Windows;
+using System.Windows.Interop;
+using WinUIXaml;
 
 namespace XamlIslandWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly DispatcherQueueController _controller;
-        private WinUIControlHost? _winUIControl;
+        private readonly WinUIControlHost winUIControlHostContent = new();
 
         public MainWindow()
         {
-            _controller = DispatcherQueueController.CreateOnCurrentThread();
-
-            // Island-support: This is necessary for Xaml controls, 
-            // resources, and metatdata to work correctly.
-            var winUIApp = new XamlApp();
-
             InitializeComponent();
             Loaded += MainWindow_Loaded;
-
-            #region Net9 Theme
-            // Type is for evaluation purposes only and
-            // is subject to change or removal in future updates.
-            // Suppress this diagnostic to proceed.
-#pragma warning disable WPF0001
-            this.ThemeMode = ThemeMode.System;
-#pragma warning restore WPF0001
-
-            #endregion
 
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            _winUIControl = new WinUIControlHost();
-            ControlHostElement.Child = _winUIControl;
+            WindowInteropHelper windowInteropHelper = new(this);
+            var hwnd = windowInteropHelper.Handle;
+
+            AppWindow appWindow = AppWindow.GetFromWindowId(Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd));
+            appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+            appWindow.TitleBar.PreferredTheme = TitleBarTheme.UseDefaultAppMode;
+            appWindow.TitleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
+            appWindow.TitleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
+
+            IslandContentBorder.Child = winUIControlHostContent;
+
+            winUIControlHostContent.Content = new BlankPage1();
+
+
         }
 
+        //protected override void OnRender(DrawingContext drawingContext)
+        //{
+        //    // Use the control's current render size
+        //    Rect rect = new Rect(0, 0, RenderSize.Width, RenderSize.Height);
+
+        //    // Fill 
+        //    drawingContext.DrawRectangle(Brushes.LightBlue, null, rect);
+        //    base.OnRender(drawingContext);
+
+        //}
     }
 }

@@ -13,11 +13,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TitleBar
-            Title="WPF Xaml Island"
-            Grid.Row="0"
-            Height="32"
-            Subtitle="preview" />
         <Grid
             Grid.Row="1"
             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"

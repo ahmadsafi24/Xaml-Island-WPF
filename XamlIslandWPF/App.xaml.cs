@@ -10,6 +10,9 @@ namespace XamlIslandWPF
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            // Enable WindowsAppSDK message pre-translation
+            WindowsAppSdkHelper.EnableContentPreTranslateMessageInEventLoop();
         }
     }
 

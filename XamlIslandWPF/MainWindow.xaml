@@ -8,10 +8,30 @@
     Title="MainWindow"
     Width="800"
     Height="450"
-    Background="Transparent"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
+    <Window.Style>
+        <Style TargetType="Window">
+            <Style.Setters>
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Window">
+                            <Border>
+                                <Grid>
+                                    <!--  Window Content  -->
+                                    <ContentPresenter />
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+    </Window.Style>
     <Grid Background="Transparent">
-        <Border Name="ControlHostElement" />
+        <Border
+            x:Name="IslandContentBorder"
+            d:Background="DimGray"/>
     </Grid>
 </Window>
