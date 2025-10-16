@@ -50,12 +50,10 @@
             Background="Transparent"
             Orientation="Horizontal">
             <Button
-                Width="40"
                 Margin="20,0"
                 Background="Transparent"
                 BorderBrush="Transparent"
                 Content="Button"
-                Foreground="GreenYellow"
                 WindowChrome.IsHitTestVisibleInChrome="True" />
         </StackPanel>
         <Grid Margin="0,34,4,0" Background="Transparent">

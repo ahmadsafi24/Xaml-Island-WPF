@@ -11,8 +11,6 @@ namespace XamlIslandWPF
         {
             base.OnStartup(e);
 
-            // Enable WindowsAppSDK message pre-translation
-            //WindowsAppSdkHelper.EnableContentPreTranslateMessageInEventLoop();
         }
     }
 
