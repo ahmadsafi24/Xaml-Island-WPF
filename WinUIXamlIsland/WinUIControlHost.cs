@@ -70,7 +70,8 @@ namespace WinUIXamlIsland
         }
 
         private System.Drawing.Color bgColor;
-        protected const int WM_PAINT = 0x000F;
+        protected const int WM_PAINT = 0x000F; 
+        private const int WM_ERASEBKGND = 0x0014;
         protected override nint WndProc(nint hwnd, int msg, nint wParam, nint lParam, ref bool handled)
         {
             switch (msg)
@@ -92,6 +93,10 @@ namespace WinUIXamlIsland
                     EndPaint(hwnd, ref ps);
                     handled = true; // mark as handled so default proc doesn’t repaint
                     break;
+                case WM_ERASEBKGND:
+                    // Suppress default background erase to prevent flicker/flash
+                    handled = true;
+                    return 1; // nonzero = background erased
                 default:
                     break;
             }

@@ -16,17 +16,15 @@ namespace XamlIslandWPF
             this.SourceInitialized += MainWindow_SourceInitialized;
             InitializeComponent();
             ContentRendered += MainWindow_ContentRendered;
-
         }
 
         private async void MainWindow_ContentRendered(object? sender, System.EventArgs e)
         {
-            await Dispatcher.BeginInvoke(new System.Action(() =>
+            await Dispatcher.BeginInvoke(() =>
             {
-                IslandContentBorder.Child = winUIControlHostContent;
-
                 winUIControlHostContent.Content = new BlankPage1();
-            }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                IslandContentBorder.Child = winUIControlHostContent;
+            }, System.Windows.Threading.DispatcherPriority.Background);
 
         }
 
